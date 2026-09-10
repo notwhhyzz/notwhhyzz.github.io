@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BIC Poster OAuth Callback</title>
+<style>
+  :root{
+    --paper:#F0F2F4; --ink:#171B24; --muted:#5B6472;
+    --accent:#1F6F64; --accent-soft:#DCEAE7; --line:#D7DBDE; --chip-bg:#E4E7E9;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --paper:#12151B; --ink:#E8EAEE; --muted:#9AA3AF;
+      --accent:#5FC4B5; --accent-soft:#16302C; --line:#2A2F37; --chip-bg:#1C2129;
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper:#12151B; --ink:#E8EAEE; --muted:#9AA3AF;
+    --accent:#5FC4B5; --accent-soft:#16302C; --line:#2A2F37; --chip-bg:#1C2129;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; }
+  body{
+    background: var(--paper); color: var(--ink);
+    font-family: "Public Sans", -apple-system, "Segoe UI", sans-serif;
+    line-height: 1.6; padding-inline: 20px; padding-block: 64px;
+  }
+  .sheet{ max-width: 560px; margin: 0 auto; }
+  .brand{
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent);
+  }
+  h1{
+    font-family: "Source Serif 4", Georgia, serif; font-weight: 600;
+    font-size: clamp(1.6rem, 5vw, 2rem); margin: 0.3em 0 0.5em; text-wrap: balance;
+  }
+  .field{ margin-bottom: 1.6em; }
+  .label{
+    font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 0.76rem;
+    color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em;
+    margin-bottom: 0.5em;
+  }
+  .value{
+    font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 0.92rem;
+    background: var(--chip-bg); border: 1px solid var(--line); border-radius: 4px;
+    padding: 0.9em 1em; word-break: break-all; user-select: all;
+  }
+  .hint{ color: var(--muted); font-size: 0.95rem; }
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@600;700&family=Public+Sans:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="sheet">
+  <div class="brand">BIC Poster</div>
+  <h1>Authorization received</h1>
+  <p class="hint">Copy the <code>code</code> value below and paste it back into the terminal running <code>oauth_helper.py</code>.</p>
+
+  <div class="field">
+    <div class="label">code</div>
+    <div class="value" id="code">—</div>
+  </div>
+  <div class="field">
+    <div class="label">state</div>
+    <div class="value" id="state">—</div>
+  </div>
+
+  <p class="hint" id="empty-hint" hidden>No authorization code found in the URL — the request may have been denied or is missing parameters.</p>
+</div>
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const code = params.get("code");
+  const state = params.get("state");
+  document.getElementById("code").textContent = code || "(none)";
+  document.getElementById("state").textContent = state || "(none)";
+  if (!code) document.getElementById("empty-hint").hidden = false;
+</script>
+</body>
+</html>
