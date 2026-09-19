@@ -4,6 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>BIC Poster</title>
+<link rel="icon" type="image/png" href="/favicon-32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <style>
   :root{
     --paper:#F0F2F4;
@@ -36,10 +38,12 @@
   }
   .sheet{ max-width: 640px; margin: 0 auto; }
   .brand{
+    display: flex; align-items: center; gap: 0.6em;
     font-family: "IBM Plex Mono", ui-monospace, monospace;
     font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase;
     color: var(--accent);
   }
+  .brand img{ width: 22px; height: 22px; border-radius: 50%; }
   h1{
     font-family: "Source Serif 4", Georgia, serif;
     font-weight: 600; font-size: clamp(2rem, 6vw, 2.7rem);
@@ -82,7 +86,7 @@
 </head>
 <body>
   <div class="sheet">
-    <div class="brand">BIC Poster</div>
+    <div class="brand"><img src="/icon-64.png" alt="BIC Poster icon">BIC Poster</div>
     <h1>A scheduled poster for one creator's own videos.</h1>
     <p class="lede">
       BIC Poster is a personal automation tool that publishes video content to TikTok and
